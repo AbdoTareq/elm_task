@@ -1,4 +1,5 @@
 import 'package:elm_task/features/auth/presentation/pages/login_page.dart';
+import 'package:elm_task/features/auth/presentation/pages/verify_page.dart';
 
 import '../../export.dart';
 
@@ -10,18 +11,18 @@ class AppRouter {
   static final GoRouter routes = GoRouter(
       navigatorKey: navKey,
       initialLocation:
-          sl<GetStorage>().hasData(kToken) ? Routes.home : Routes.login,
+          sl<GetStorage>().hasData(kToken) ? Routes.incidents : Routes.login,
       routes: [
         GoRoute(
           name: Routes.login,
           path: Routes.login,
           builder: (context, state) => const LoginPage(),
         ),
-        // GoRoute(
-        //   name: Routes.signup,
-        //   path: Routes.signup,
-        //   builder: (context, state) => const SignUpPage(),
-        // ),
+        GoRoute(
+          name: Routes.verify,
+          path: Routes.verify,
+          builder: (context, state) => VerifyPage(email: state.extra as String),
+        ),
         // GoRoute(
         //   name: Routes.updatePass,
         //   path: Routes.updatePass,

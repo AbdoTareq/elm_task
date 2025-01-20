@@ -4,9 +4,9 @@
 /// To regenerate, run: `dart run slang`
 ///
 /// Locales: 2
-/// Strings: 402 (201 per locale)
+/// Strings: 404 (202 per locale)
 ///
-/// Built on 2025-01-20 at 13:18 UTC
+/// Built on 2025-01-20 at 14:25 UTC
 
 // coverage:ignore-file
 // ignore_for_file: type=lint
@@ -154,8 +154,9 @@ class Translations implements BaseTranslations<AppLocale, Translations> {
 	String get confairmData => 'Please check your details';
 	String get conectApp => 'Check your connection';
 	String get email => 'email';
-	String get failed => 'failed';
-	String get success => 'success';
+	String get failed => 'Failed';
+	String get success => 'Success';
+	String get verify => 'Verify';
 	String get login => 'login';
 	String get remember => 'remember';
 	String get password => 'password';
@@ -389,6 +390,7 @@ class _StringsAr implements Translations {
 	@override String get remember => 'يتذكر';
 	@override String get success => 'نجاح';
 	@override String get failed => 'فشل';
+	@override String get verify => 'تحقق';
 	@override String get confairmMsEmail => 'من فضلك تأكد من بريدك الالكتروني  لأدخال كود اعادة كلمة المرور';
 	@override String get msNoEmail => 'لم يتم العثور على أيّ حسابٍ بهذا العنوان الإلكتروني';
 	@override String get msErrorEmail => 'من فضلك أدخل الايميل الصحيح';
@@ -590,8 +592,9 @@ extension on Translations {
 			case 'confairmData': return 'Please check your details';
 			case 'conectApp': return 'Check your connection';
 			case 'email': return 'email';
-			case 'failed': return 'failed';
-			case 'success': return 'success';
+			case 'failed': return 'Failed';
+			case 'success': return 'Success';
+			case 'verify': return 'Verify';
 			case 'login': return 'login';
 			case 'remember': return 'remember';
 			case 'password': return 'password';
@@ -807,6 +810,7 @@ extension on _StringsAr {
 			case 'remember': return 'يتذكر';
 			case 'success': return 'نجاح';
 			case 'failed': return 'فشل';
+			case 'verify': return 'تحقق';
 			case 'confairmMsEmail': return 'من فضلك تأكد من بريدك الالكتروني  لأدخال كود اعادة كلمة المرور';
 			case 'msNoEmail': return 'لم يتم العثور على أيّ حسابٍ بهذا العنوان الإلكتروني';
 			case 'msErrorEmail': return 'من فضلك أدخل الايميل الصحيح';
