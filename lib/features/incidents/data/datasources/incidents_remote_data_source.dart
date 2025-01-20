@@ -39,8 +39,7 @@ class IncidentsRemoteDataSourceImp implements IncidentsRemoteDataSource {
 
   @override
   Future<IncidentsModel> create(IncidentModel item) async {
-    final response = await network.post(
-        '${Endpoints.incident}/change-status', item.toJson());
+    final response = await network.post(Endpoints.incident, item.toJson());
     if (response.statusCode == 200) {
       return IncidentsModel.fromJson(response.data);
     }

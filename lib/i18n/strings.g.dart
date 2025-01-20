@@ -4,9 +4,9 @@
 /// To regenerate, run: `dart run slang`
 ///
 /// Locales: 2
-/// Strings: 406 (203 per locale)
+/// Strings: 410 (205 per locale)
 ///
-/// Built on 2025-01-20 at 14:43 UTC
+/// Built on 2025-01-20 at 18:42 UTC
 
 // coverage:ignore-file
 // ignore_for_file: type=lint
@@ -156,6 +156,8 @@ class Translations implements BaseTranslations<AppLocale, Translations> {
 	String get email => 'email';
 	String get failed => 'Failed';
 	String get success => 'Success';
+	String get incidents => 'Incidents';
+	String get changeStatus => 'Change Status';
 	String get verify => 'Verify';
 	String get login => 'login';
 	String get remember => 'remember';
@@ -385,6 +387,8 @@ class _StringsAr implements Translations {
 	@override String get email => 'البريد الالكتروني';
 	@override String get password => 'كلمة السر';
 	@override String get passwordConf => 'تأكيد كلمة السر';
+	@override String get incidents => 'الحادثات';
+	@override String get changeStatus => 'تغيير الحالة';
 	@override String get confirmCode => 'كود التحقيق';
 	@override String get save => 'حفظ';
 	@override String get login => 'تسجيل الدخول';
@@ -596,6 +600,8 @@ extension on Translations {
 			case 'email': return 'email';
 			case 'failed': return 'Failed';
 			case 'success': return 'Success';
+			case 'incidents': return 'Incidents';
+			case 'changeStatus': return 'Change Status';
 			case 'verify': return 'Verify';
 			case 'login': return 'login';
 			case 'remember': return 'remember';
@@ -807,6 +813,8 @@ extension on _StringsAr {
 			case 'email': return 'البريد الالكتروني';
 			case 'password': return 'كلمة السر';
 			case 'passwordConf': return 'تأكيد كلمة السر';
+			case 'incidents': return 'الحادثات';
+			case 'changeStatus': return 'تغيير الحالة';
 			case 'confirmCode': return 'كود التحقيق';
 			case 'save': return 'حفظ';
 			case 'login': return 'تسجيل الدخول';

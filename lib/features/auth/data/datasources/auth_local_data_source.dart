@@ -23,6 +23,7 @@ class AuthLocalDataSourceImp implements AuthLocalDataSource {
 
   @override
   Future<void> saveVerify(VerifyModel verify) async {
-    return await localDataSource.write(kVerify, verify.toJson());
+    await localDataSource.write(kVerify, verify.toJson());
+    await localDataSource.writeString(kToken, verify.token);
   }
 }

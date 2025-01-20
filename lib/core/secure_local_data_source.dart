@@ -17,6 +17,10 @@ class SecureLocalDataSourceImpl implements LocalDataSource {
       box.write(key: key, value: jsonEncode(value));
 
   @override
+  Future<void> writeString(String key, String value) async =>
+      box.write(key: key, value: value);
+
+  @override
   Future<void> remove(String key) async {
     return await box.delete(key: key);
   }

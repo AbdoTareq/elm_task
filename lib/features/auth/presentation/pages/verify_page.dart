@@ -52,7 +52,7 @@ class _VerifyPageState extends State<VerifyPage> {
                       }
                       if (state is VerifySuccess) {
                         showSuccessSnack(message: context.t.welcome);
-                        context.pushNamed(Routes.incidents);
+                        context.goNamed(Routes.incidents);
                       }
                     },
                     builder: (context, state) {

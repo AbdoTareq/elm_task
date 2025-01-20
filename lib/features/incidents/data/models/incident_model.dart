@@ -6,8 +6,9 @@ class IncidentsModel extends IncidentsWrapper {
   });
 
   factory IncidentsModel.fromJson(Map<String, dynamic> json) => IncidentsModel(
-        incidents: List<Incident>.from(
-            json["incidents"].map((x) => IncidentsModel.fromJson(x))),
+        incidents: (json["incidents"] as List<dynamic>? ?? <dynamic>[])
+            .map((x) => IncidentModel.fromJson(x))
+            .toList(),
       );
 
   Map<String, dynamic> toJson() => {
@@ -70,11 +71,11 @@ class MediaModel extends Media {
   });
 
   factory MediaModel.fromJson(Map<String, dynamic> json) => MediaModel(
-        id: json["id"],
-        url: json["url"],
-        type: json["type"],
-        mimeType: json["mime_type"],
-        incidentId: json["incident_id"],
+        id: json["id"] ?? '',
+        url: json["url"] ?? 0,
+        type: json["type"] ?? '',
+        mimeType: json["mime_type"] ?? '',
+        incidentId: json["incident_id"] ?? '',
       );
 
   Map<String, dynamic> toJson() => {

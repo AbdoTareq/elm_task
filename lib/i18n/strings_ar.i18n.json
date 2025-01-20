@@ -7,6 +7,8 @@
     "email": "البريد الالكتروني",
     "password": "كلمة السر",
     "passwordConf": "تأكيد كلمة السر",
+    "incidents": "الحادثات",
+    "changeStatus": "تغيير الحالة",
     "confirmCode": "كود التحقيق",
     "save": "حفظ",
     "login": "تسجيل الدخول",

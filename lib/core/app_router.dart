@@ -1,5 +1,6 @@
 import 'package:elm_task/features/auth/presentation/pages/login_page.dart';
 import 'package:elm_task/features/auth/presentation/pages/verify_page.dart';
+import 'package:elm_task/features/incidents/presentation/pages/incidents_page.dart';
 
 import '../../export.dart';
 
@@ -23,10 +24,10 @@ class AppRouter {
           path: Routes.verify,
           builder: (context, state) => VerifyPage(email: state.extra as String),
         ),
-        // GoRoute(
-        //   name: Routes.updatePass,
-        //   path: Routes.updatePass,
-        //   builder: (context, state) => const UpdatePassPage(),
-        // ),
+        GoRoute(
+          name: Routes.incidents,
+          path: Routes.incidents,
+          builder: (context, state) => const IncidentsPage(),
+        ),
       ]);
 }

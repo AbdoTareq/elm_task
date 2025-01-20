@@ -21,11 +21,11 @@ enum IncidentStatus {
 class Incident {
   final String id;
   final String description;
-  final double latitude;
-  final double longitude;
+  final num latitude;
+  final num longitude;
   final IncidentStatus status;
-  final int priority;
-  final int typeId;
+  final num priority;
+  final num typeId;
   final String issuerId;
   final String assigneeId;
   final DateTime createdAt;
@@ -52,7 +52,7 @@ class Media {
   final String id;
   final String mimeType;
   final String url;
-  final int type;
+  final num type;
   final String incidentId;
 
   Media({

@@ -7,6 +7,8 @@
     "email": "email",
     "failed": "Failed",
     "success": "Success",
+    "incidents": "Incidents",
+    "changeStatus": "Change Status",
     "verify": "Verify",
     "login": "login",
     "remember": "remember",
