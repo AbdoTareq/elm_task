@@ -1,4 +1,5 @@
 import 'package:elm_task/core/error/exceptions.dart';
+import 'package:elm_task/core/network/endpoints.dart';
 import 'package:elm_task/core/network/network.dart';
 import 'package:elm_task/features/incidents/data/models/incident_model.dart';
 import 'package:elm_task/features/incidents/domain/entities/incidents_wrapper.dart';
@@ -16,7 +17,8 @@ class IncidentsRemoteDataSourceImp implements IncidentsRemoteDataSource {
 
   @override
   Future<IncidentsModel> getAll() async {
-    final response = await network.get('/incident?startDate=2021-11-14', {});
+    final response =
+        await network.get('${Endpoints.incident}?startDate=2021-11-14', {});
     if (response.statusCode == 200) {
       return IncidentsModel.fromJson(response.data);
     }
@@ -25,7 +27,7 @@ class IncidentsRemoteDataSourceImp implements IncidentsRemoteDataSource {
 
   @override
   Future<IncidentModel> changeStatus(String id, IncidentStatus status) async {
-    final response = await network.put('incident/change-status', {
+    final response = await network.put('${Endpoints.incident}/change-status', {
       "incidentId": id,
       "status": status.index,
     });
@@ -37,8 +39,8 @@ class IncidentsRemoteDataSourceImp implements IncidentsRemoteDataSource {
 
   @override
   Future<IncidentsModel> create(IncidentModel item) async {
-    final response =
-        await network.post('incident/change-status', item.toJson());
+    final response = await network.post(
+        '${Endpoints.incident}/change-status', item.toJson());
     if (response.statusCode == 200) {
       return IncidentsModel.fromJson(response.data);
     }

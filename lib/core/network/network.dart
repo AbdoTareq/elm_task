@@ -1,5 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:elm_task/core/error/exceptions.dart';
+import 'package:elm_task/core/network/endpoints.dart';
 
 import '../../export.dart';
 
@@ -50,7 +51,7 @@ class Network implements NetworkInterface {
   @override
   Future<Response> post(String endPoint, dynamic body) async {
     return _req(() {
-      return dio.post(url + endPoint,
+      return dio.post(Endpoints.baseUrl + endPoint,
           data: body, options: Options(headers: headers));
     });
   }
@@ -61,7 +62,7 @@ class Network implements NetworkInterface {
     dynamic body,
   ) {
     return _req(() {
-      return dio.put(url + endPoint,
+      return dio.put(Endpoints.baseUrl + endPoint,
           data: body, options: Options(headers: headers));
     });
   }
@@ -72,15 +73,15 @@ class Network implements NetworkInterface {
     dynamic body,
   ) {
     return _req(() {
-      return dio.delete(url + endPoint,
+      return dio.delete(Endpoints.baseUrl + endPoint,
           data: body, options: Options(headers: headers));
     });
   }
 
   @override
-  Future<Response> get(String endPoint, dynamic body, {String? baseUrl}) {
+  Future<Response> get(String endPoint, dynamic body) {
     return _req(() {
-      return dio.get((baseUrl ?? url) + endPoint,
+      return dio.get(Endpoints.baseUrl + endPoint,
           options: Options(headers: headers));
     });
   }

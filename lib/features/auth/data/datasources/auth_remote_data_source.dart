@@ -1,4 +1,5 @@
 import 'package:elm_task/core/error/exceptions.dart';
+import 'package:elm_task/core/network/endpoints.dart';
 import 'package:elm_task/core/network/network.dart';
 import 'package:elm_task/features/auth/data/models/verify_model.dart';
 
@@ -14,7 +15,7 @@ class AuthRemoteDataSourceImp implements AuthRemoteDataSource {
 
   @override
   Future<bool> login(String email) async {
-    final response = await network.post('/login', {'email': email});
+    final response = await network.post(Endpoints.login, {'email': email});
     if (response.statusCode == 200) {
       return true;
     }
@@ -24,7 +25,7 @@ class AuthRemoteDataSourceImp implements AuthRemoteDataSource {
   @override
   Future<VerifyModel> verifyOtp(String email, String otp) async {
     final response =
-        await network.post('/verify-otp', {'email': email, 'otp': otp});
+        await network.post(Endpoints.verify, {'email': email, 'otp': otp});
     if (response.statusCode == 200) {
       return VerifyModel.fromJson(response.data);
     }
