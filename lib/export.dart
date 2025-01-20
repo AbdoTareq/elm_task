@@ -14,7 +14,6 @@ export 'core/validators.dart';
 
 export 'core/view/widgets/password_input.dart';
 export 'core/view/widgets/shimmer_list.dart';
-export 'core/view/widgets/rounded_corner_loading_button.dart';
 export 'core/view/widgets/custom_app_bar.dart';
 // constants
 export 'core/theme.dart';

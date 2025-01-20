@@ -4,9 +4,9 @@
 /// To regenerate, run: `dart run slang`
 ///
 /// Locales: 2
-/// Strings: 398 (199 per locale)
+/// Strings: 402 (201 per locale)
 ///
-/// Built on 2024-12-11 at 08:47 UTC
+/// Built on 2025-01-20 at 13:18 UTC
 
 // coverage:ignore-file
 // ignore_for_file: type=lint
@@ -154,6 +154,8 @@ class Translations implements BaseTranslations<AppLocale, Translations> {
 	String get confairmData => 'Please check your details';
 	String get conectApp => 'Check your connection';
 	String get email => 'email';
+	String get failed => 'failed';
+	String get success => 'success';
 	String get login => 'login';
 	String get remember => 'remember';
 	String get password => 'password';
@@ -385,6 +387,8 @@ class _StringsAr implements Translations {
 	@override String get save => 'حفظ';
 	@override String get login => 'تسجيل الدخول';
 	@override String get remember => 'يتذكر';
+	@override String get success => 'نجاح';
+	@override String get failed => 'فشل';
 	@override String get confairmMsEmail => 'من فضلك تأكد من بريدك الالكتروني  لأدخال كود اعادة كلمة المرور';
 	@override String get msNoEmail => 'لم يتم العثور على أيّ حسابٍ بهذا العنوان الإلكتروني';
 	@override String get msErrorEmail => 'من فضلك أدخل الايميل الصحيح';
@@ -586,6 +590,8 @@ extension on Translations {
 			case 'confairmData': return 'Please check your details';
 			case 'conectApp': return 'Check your connection';
 			case 'email': return 'email';
+			case 'failed': return 'failed';
+			case 'success': return 'success';
 			case 'login': return 'login';
 			case 'remember': return 'remember';
 			case 'password': return 'password';
@@ -799,6 +805,8 @@ extension on _StringsAr {
 			case 'save': return 'حفظ';
 			case 'login': return 'تسجيل الدخول';
 			case 'remember': return 'يتذكر';
+			case 'success': return 'نجاح';
+			case 'failed': return 'فشل';
 			case 'confairmMsEmail': return 'من فضلك تأكد من بريدك الالكتروني  لأدخال كود اعادة كلمة المرور';
 			case 'msNoEmail': return 'لم يتم العثور على أيّ حسابٍ بهذا العنوان الإلكتروني';
 			case 'msErrorEmail': return 'من فضلك أدخل الايميل الصحيح';

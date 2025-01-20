@@ -1,3 +1,5 @@
+import 'package:elm_task/features/auth/presentation/pages/login_page.dart';
+
 import '../../export.dart';
 
 /// don't use for navigate without context
@@ -7,25 +9,14 @@ class AppRouter {
   /// use for navigate without context
   static final GoRouter routes = GoRouter(
       navigatorKey: navKey,
-      initialLocation: Routes.animatedSplash,
+      initialLocation:
+          sl<GetStorage>().hasData(kToken) ? Routes.home : Routes.login,
       routes: [
-        // GoRoute(
-        //   name: Routes.animatedSplash,
-        //   path: Routes.animatedSplash,
-        //   builder: (context, state) => AnimatedSplash(
-        //     home: sl<GetStorage>().hasData(kToken)
-        //         ? Routes.settingsNav
-        //         : Routes.landing,
-        //     title: '',
-        //     duration: Duration.hoursPerDay,
-        //     type: AnimatedSplashType.StaticDuration,
-        //   ),
-        // ),
-        // GoRoute(
-        //   name: Routes.login,
-        //   path: Routes.login,
-        //   builder: (context, state) => const LoginPage(),
-        // ),
+        GoRoute(
+          name: Routes.login,
+          path: Routes.login,
+          builder: (context, state) => const LoginPage(),
+        ),
         // GoRoute(
         //   name: Routes.signup,
         //   path: Routes.signup,

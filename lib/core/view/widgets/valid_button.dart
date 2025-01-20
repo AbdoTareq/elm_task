@@ -17,7 +17,7 @@ class ValidButton extends StatelessWidget {
     return ValueListenableBuilder<bool>(
       valueListenable: isValid,
       builder: (context, value, child) {
-        return RoundedCornerLoadingButton(
+        return RoundedCornerButton(
           isOutlined: !isValid.value,
           onPressed: isValid.value ? onPressed : null,
           text: text,

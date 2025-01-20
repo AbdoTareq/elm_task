@@ -1,7 +1,13 @@
 import 'package:dio/dio.dart';
+import 'package:elm_task/core/network/network_info.dart';
 import 'package:elm_task/core/secure_local_data_source.dart';
 import 'package:elm_task/core/network/network.dart';
 import 'package:elm_task/export.dart';
+import 'package:elm_task/features/auth/data/repositories/repo_imp.dart';
+import 'package:elm_task/features/auth/domain/repositories/auth_repo.dart';
+import 'package:elm_task/features/auth/domain/usecases/login_usecase.dart';
+import 'package:elm_task/features/auth/domain/usecases/verify_usecase.dart';
+import 'package:elm_task/features/auth/presentation/bloc/auth_bloc.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:get_it/get_it.dart';
 import 'package:internet_connection_checker/internet_connection_checker.dart';
@@ -12,20 +18,27 @@ final sl = GetIt.instance;
 Future<void> init() async {
   //! Features
   // Bloc
-
+  sl.registerFactory(
+    () => AuthBloc(loginUseCase: sl(), verifyUseCase: sl()),
+  );
   // Usecases
-  // sl.registerLazySingleton(() => PostUsecases(sl()));
+  sl.registerLazySingleton(() => LoginUsecase(sl()));
+  sl.registerLazySingleton(() => VerifyUsecase(sl()));
 
   // Repository
+  sl.registerLazySingleton<AuthRepo>(
+      () => AuthRepoImp(remoteDataSource: sl(), networkInfo: sl()));
 
   // Datasources
   sl.registerLazySingleton<AuthRemoteDataSource>(
       () => AuthRemoteDataSourceImp(network: sl()));
 
   //! Core
-  sl.registerLazySingleton(() => InternetConnectionChecker.instance);
+  sl.registerLazySingleton<NetworkInfo>(
+      () => NetworkInfoImpl(connectionChecker: sl()));
   sl.registerLazySingleton<NetworkInterface>(
       () => Network(dio: sl(), box: sl()));
+  sl.registerLazySingleton(() => InternetConnectionChecker.instance);
   sl.registerLazySingleton(() => SecureLocalDataSourceImpl(box: sl()));
   sl.registerLazySingleton<LocalDataSource>(
       () => LocalDataSourceImpl(box: sl()));

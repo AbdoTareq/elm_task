@@ -4,40 +4,61 @@ class RoundedCornerButton extends StatelessWidget {
   const RoundedCornerButton({
     super.key,
     required this.onPressed,
-    required this.child,
+    required this.text,
     this.color,
     this.isOutlined = false,
     this.borderColor,
+    this.width,
+    this.height,
+    this.isLoading = false,
   });
 
-  final Function() onPressed;
+  final void Function()? onPressed;
   final Color? color;
   final Color? borderColor;
-  final Widget child;
+  final String text;
   final bool isOutlined;
+  final double? width;
+  final double? height;
+  final bool isLoading;
 
   @override
   Widget build(BuildContext context) {
-    return ElevatedButton(
-        style: isOutlined
-            ? ButtonStyle(
-                surfaceTintColor:
-                    MaterialStateProperty.all<Color>(color ?? Colors.white),
-                backgroundColor:
-                    MaterialStateProperty.all<Color>(color ?? Colors.white),
-                shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-                    RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(15.0),
-                  side: const BorderSide(color: kPrimaryColor),
-                )))
-            : ButtonStyle(
-                backgroundColor:
-                    MaterialStateProperty.all<Color>(color ?? kPrimaryColor),
-                shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-                    RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(15.0),
-                ))),
-        onPressed: onPressed,
-        child: child);
+    return AnimatedSwitcher(
+      duration: const Duration(milliseconds: 300),
+      child: isLoading
+          ? Center(child: const CircularProgressIndicator())
+          : SizedBox(
+              width: width ?? double.infinity,
+              height: height ?? 48.h,
+              child: ElevatedButton(
+                  style: isOutlined
+                      ? ButtonStyle(
+                          elevation: const WidgetStatePropertyAll<double>(0),
+                          backgroundColor: const WidgetStatePropertyAll<Color>(
+                              Colors.transparent),
+                          shape: WidgetStatePropertyAll<RoundedRectangleBorder>(
+                              RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(8),
+                            side: const BorderSide(color: kPrimaryColor),
+                          )))
+                      : ButtonStyle(
+                          backgroundColor: WidgetStatePropertyAll<Color>(
+                              color ?? kPrimaryColor),
+                          shape: WidgetStatePropertyAll<RoundedRectangleBorder>(
+                              RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(8),
+                                  side: BorderSide(
+                                      color:
+                                          borderColor ?? Colors.transparent)))),
+                  onPressed: onPressed,
+                  child: Text(
+                    text.toTitleCase(),
+                    style: context.textTheme.titleLarge?.copyWith(
+                      color: isOutlined ? null : kWhite,
+                    ),
+                  )),
+            ),
+    );
   }
 }
