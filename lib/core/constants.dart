@@ -1,0 +1,16 @@
+const double baseHeight = 844.0;
+const double baseWidth = 399.0;
+const String employeeCollection = 'employees';
+const String materialCollection = 'materials';
+const String clientCollection = 'clients';
+const String attendanceCollection = 'attendance';
+const String employeeId = 'employeeId';
+const String kToken = 'token';
+const String kRefreshToken = 'refreshToken';
+const String kLanguage = 'language';
+const String kStudent = 'Student';
+const String kTeacher = 'Teacher';
+const String kType = 'Type';
+const String kUser = 'User';
+const String kTheme = 'Theme';
+const String kPopular = 'popular';
