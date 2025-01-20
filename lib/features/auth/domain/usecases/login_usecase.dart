@@ -5,21 +5,21 @@ import 'package:equatable/equatable.dart';
 import '../../../../core/error/failures.dart';
 import '../../../../core/usecases/usecase.dart';
 
-class LoginAuth implements UseCase<bool, Params> {
+class LoginUsecase implements UseCase<bool, LoginParams> {
   final AuthRepo repository;
 
-  LoginAuth(this.repository);
+  LoginUsecase(this.repository);
 
   @override
-  Future<Either<Failure, bool>> call(Params params) async {
+  Future<Either<Failure, bool>> call(LoginParams params) async {
     return await repository.login(params.email);
   }
 }
 
-class Params extends Equatable {
+class LoginParams extends Equatable {
   final String email;
 
-  const Params({required this.email});
+  const LoginParams({required this.email});
 
   @override
   List<Object> get props => [email];

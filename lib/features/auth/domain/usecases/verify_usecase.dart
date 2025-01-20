@@ -6,22 +6,22 @@ import 'package:equatable/equatable.dart';
 import '../../../../core/error/failures.dart';
 import '../../../../core/usecases/usecase.dart';
 
-class VerifyAuth implements UseCase<Verify, Params> {
+class VerifyUsecase implements UseCase<Verify, VerifyParams> {
   final AuthRepo repository;
 
-  VerifyAuth(this.repository);
+  VerifyUsecase(this.repository);
 
   @override
-  Future<Either<Failure, Verify>> call(Params params) async {
+  Future<Either<Failure, Verify>> call(VerifyParams params) async {
     return await repository.verifyOtp(params.email, params.otp);
   }
 }
 
-class Params extends Equatable {
+class VerifyParams extends Equatable {
   final String email;
   final String otp;
 
-  const Params({
+  const VerifyParams({
     required this.email,
     required this.otp,
   });
