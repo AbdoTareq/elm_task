@@ -41,7 +41,7 @@ class _LoginPageState extends State<LoginPage> {
                     controller: emailTextController,
                     hint: context.t.email,
                     validate: (value) =>
-                        value!.length > 5 ? null : context.t.required,
+                        isEmail(value) ? null : context.t.required,
                   ),
                   BlocConsumer<AuthBloc, AuthState>(
                     listener: (context, state) {

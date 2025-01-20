@@ -3,6 +3,7 @@ import 'package:elm_task/core/network/network_info.dart';
 import 'package:elm_task/core/secure_local_data_source.dart';
 import 'package:elm_task/core/network/network.dart';
 import 'package:elm_task/export.dart';
+import 'package:elm_task/features/auth/data/datasources/auth_local_data_source.dart';
 import 'package:elm_task/features/auth/data/repositories/repo_imp.dart';
 import 'package:elm_task/features/auth/domain/repositories/auth_repo.dart';
 import 'package:elm_task/features/auth/domain/usecases/login_usecase.dart';
@@ -26,12 +27,17 @@ Future<void> init() async {
   sl.registerLazySingleton(() => VerifyUsecase(sl()));
 
   // Repository
-  sl.registerLazySingleton<AuthRepo>(
-      () => AuthRepoImp(remoteDataSource: sl(), networkInfo: sl()));
+  sl.registerLazySingleton<AuthRepo>(() => AuthRepoImp(
+        remoteDataSource: sl(),
+        localDataSource: sl(),
+        networkInfo: sl(),
+      ));
 
   // Datasources
   sl.registerLazySingleton<AuthRemoteDataSource>(
       () => AuthRemoteDataSourceImp(network: sl()));
+  sl.registerLazySingleton<AuthLocalDataSource>(
+      () => AuthLocalDataSourceImp(localDataSource: sl()));
 
   //! Core
   sl.registerLazySingleton<NetworkInfo>(

@@ -40,9 +40,10 @@ class _VerifyPageState extends State<VerifyPage> {
                   FlutterLogo(size: 300),
                   TextInput(
                     controller: otpTextController,
-                    hint: context.t.email,
+                    hint: context.t.otp,
+                    inputType: TextInputType.number,
                     validate: (value) =>
-                        value!.length > 5 ? null : context.t.required,
+                        value!.length > 3 ? null : context.t.required,
                   ),
                   BlocConsumer<AuthBloc, AuthState>(
                     listener: (context, state) {
@@ -50,11 +51,8 @@ class _VerifyPageState extends State<VerifyPage> {
                         showFailSnack(message: state.message);
                       }
                       if (state is VerifySuccess) {
-                        // if (state.success) {
-                        //   showSuccessSnack(message: context.t.success);
-                        // } else {
-                        //   showFailSnack(message: context.t.failed);
-                        // }
+                        showSuccessSnack(message: context.t.welcome);
+                        context.pushNamed(Routes.incidents);
                       }
                     },
                     builder: (context, state) {

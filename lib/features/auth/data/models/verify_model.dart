@@ -1,3 +1,5 @@
+import 'package:elm_task/core/error/exceptions.dart';
+import 'package:elm_task/export.dart';
 import 'package:elm_task/features/auth/domain/entities/verify.dart';
 
 class VerifyModel extends Verify {
@@ -7,10 +9,16 @@ class VerifyModel extends Verify {
   });
 
   factory VerifyModel.fromJson(Map<String, dynamic> json) {
-    return VerifyModel(
-      roles: json['roles'],
-      token: json['token'],
-    );
+    try {
+      return VerifyModel(
+        roles: (json['roles'] as List<dynamic>)
+            .map((e) => e.toString().toInt)
+            .toList(),
+        token: json['token'],
+      );
+    } catch (e) {
+      throw SerializeException();
+    }
   }
 
   Map<String, dynamic> toJson() {

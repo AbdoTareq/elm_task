@@ -4,9 +4,9 @@
 /// To regenerate, run: `dart run slang`
 ///
 /// Locales: 2
-/// Strings: 404 (202 per locale)
+/// Strings: 406 (203 per locale)
 ///
-/// Built on 2025-01-20 at 14:25 UTC
+/// Built on 2025-01-20 at 14:43 UTC
 
 // coverage:ignore-file
 // ignore_for_file: type=lint
@@ -169,6 +169,7 @@ class Translations implements BaseTranslations<AppLocale, Translations> {
 	String get enterEmail => 'Please enter your email';
 	String get enterCode => 'The verification code has been sent, please check your email';
 	String get send => 'Send';
+	String get otp => 'Otp';
 	String get loading => 'Loading...';
 	String get completFiled => 'Complete all fields';
 	String get goSingIn => 'go to sign up with name';
@@ -391,6 +392,7 @@ class _StringsAr implements Translations {
 	@override String get success => 'نجاح';
 	@override String get failed => 'فشل';
 	@override String get verify => 'تحقق';
+	@override String get otp => 'كود التحقيق';
 	@override String get confairmMsEmail => 'من فضلك تأكد من بريدك الالكتروني  لأدخال كود اعادة كلمة المرور';
 	@override String get msNoEmail => 'لم يتم العثور على أيّ حسابٍ بهذا العنوان الإلكتروني';
 	@override String get msErrorEmail => 'من فضلك أدخل الايميل الصحيح';
@@ -607,6 +609,7 @@ extension on Translations {
 			case 'enterEmail': return 'Please enter your email';
 			case 'enterCode': return 'The verification code has been sent, please check your email';
 			case 'send': return 'Send';
+			case 'otp': return 'Otp';
 			case 'loading': return 'Loading...';
 			case 'completFiled': return 'Complete all fields';
 			case 'goSingIn': return 'go to sign up with name';
@@ -811,6 +814,7 @@ extension on _StringsAr {
 			case 'success': return 'نجاح';
 			case 'failed': return 'فشل';
 			case 'verify': return 'تحقق';
+			case 'otp': return 'كود التحقيق';
 			case 'confairmMsEmail': return 'من فضلك تأكد من بريدك الالكتروني  لأدخال كود اعادة كلمة المرور';
 			case 'msNoEmail': return 'لم يتم العثور على أيّ حسابٍ بهذا العنوان الإلكتروني';
 			case 'msErrorEmail': return 'من فضلك أدخل الايميل الصحيح';

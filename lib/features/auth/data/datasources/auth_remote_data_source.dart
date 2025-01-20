@@ -1,8 +1,5 @@
-import 'package:dartz/dartz.dart';
 import 'package:elm_task/core/error/exceptions.dart';
-import 'package:elm_task/core/error/failures.dart';
 import 'package:elm_task/core/network/network.dart';
-import 'package:elm_task/core/network/server_response.dart';
 import 'package:elm_task/features/auth/data/models/verify_model.dart';
 
 abstract class AuthRemoteDataSource {

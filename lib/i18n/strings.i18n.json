@@ -20,6 +20,7 @@
     "enterEmail": "Please enter your email",
     "enterCode": "The verification code has been sent, please check your email",
     "send": "Send",
+    "otp": "Otp",
     "loading": "Loading...",
     "completFiled": "Complete all fields",
     "goSingIn": "go to sign up with name",

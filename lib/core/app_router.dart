@@ -11,7 +11,7 @@ class AppRouter {
   static final GoRouter routes = GoRouter(
       navigatorKey: navKey,
       initialLocation:
-          sl<GetStorage>().hasData(kToken) ? Routes.incidents : Routes.login,
+          sl<GetStorage>().hasData(kVerify) ? Routes.incidents : Routes.login,
       routes: [
         GoRoute(
           name: Routes.login,

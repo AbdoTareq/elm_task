@@ -6,6 +6,7 @@ const String clientCollection = 'clients';
 const String attendanceCollection = 'attendance';
 const String employeeId = 'employeeId';
 const String kToken = 'token';
+const String kVerify = 'verify';
 const String kRefreshToken = 'refreshToken';
 const String kLanguage = 'language';
 const String kStudent = 'Student';
