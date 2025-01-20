@@ -48,6 +48,16 @@ class IncidentModel extends Incident {
         medias: List<Media>.from(
             (json["medias"] ?? []).map((x) => MediaModel.fromJson(x))),
       );
+
+  Map<String, dynamic> toJson() => {
+        "description": description,
+        "latitude": latitude,
+        "longitude": longitude,
+        "status": status.index,
+        "typeId": typeId,
+        "priority": priority,
+        "issuerId": issuerId,
+      };
 }
 
 class MediaModel extends Media {
