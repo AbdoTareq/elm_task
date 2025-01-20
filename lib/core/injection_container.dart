@@ -1,13 +1,11 @@
 import 'package:dio/dio.dart';
-import 'package:elm_task/features/auth/data/datasources/secure_local_data_source.dart';
+import 'package:elm_task/core/secure_local_data_source.dart';
 import 'package:elm_task/core/network/network.dart';
 import 'package:elm_task/export.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:get_it/get_it.dart';
 import 'package:internet_connection_checker/internet_connection_checker.dart';
 import 'package:requests_inspector/requests_inspector.dart';
-
-import 'network/network_info.dart';
 
 final sl = GetIt.instance;
 
@@ -21,11 +19,11 @@ Future<void> init() async {
   // Repository
 
   // Datasources
-  sl.registerLazySingleton<RemoteDataSource>(
-      () => RemoteDataSource(network: sl(), networkInfo: sl()));
+  sl.registerLazySingleton<AuthRemoteDataSource>(
+      () => AuthRemoteDataSourceImp(network: sl()));
 
   //! Core
-  sl.registerLazySingleton<NetworkInfo>(() => NetworkInfoImpl(sl()));
+  sl.registerLazySingleton(() => InternetConnectionChecker.instance);
   sl.registerLazySingleton<NetworkInterface>(
       () => Network(dio: sl(), box: sl()));
   sl.registerLazySingleton(() => SecureLocalDataSourceImpl(box: sl()));
@@ -35,7 +33,6 @@ Future<void> init() async {
   //! External
   sl.registerLazySingleton(() => GetStorage());
   sl.registerLazySingleton(() => const FlutterSecureStorage());
-  sl.registerLazySingleton(() => InternetConnectionChecker());
   sl.registerLazySingleton<Dio>(() => Dio(BaseOptions(
         connectTimeout: const Duration(seconds: 1000),
         receiveTimeout: const Duration(seconds: 1000),

@@ -3,8 +3,6 @@ import 'package:elm_task/core/error/exceptions.dart';
 
 import '../../export.dart';
 
-const url = 'https://ba4caf56-6e45-4662-bbfb-20878b8cd42e.mock.pstmn.io';
-
 abstract class NetworkInterface {
   Future<Response> get(String endPoint, dynamic body);
   Future<Response> post(String endPoint, dynamic body);
