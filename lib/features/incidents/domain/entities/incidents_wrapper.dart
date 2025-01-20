@@ -11,12 +11,19 @@ class IncidentsWrapper extends Equatable {
   List<Object?> get props => [incidents];
 }
 
+enum IncidentStatus {
+  submitted,
+  inProgress,
+  completed,
+  rejected,
+}
+
 class Incident {
   final String id;
   final String description;
   final double latitude;
   final double longitude;
-  final int status;
+  final IncidentStatus status;
   final int priority;
   final int typeId;
   final String issuerId;

@@ -23,8 +23,6 @@ class Network implements NetworkInterface {
   Future<Response> _req(Future<Response> Function() requestType) async {
     headers = {
       'Content-Type': 'application/json',
-      'Accept-Language':
-          (await box.containsKey(kLanguage) ? await box.read(kLanguage) : 'ar'),
     };
     if (await box.containsKey(kToken)) {
       headers = {

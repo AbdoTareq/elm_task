@@ -1,28 +1,29 @@
 import 'package:elm_task/core/error/exceptions.dart';
 import 'package:elm_task/export.dart';
-import 'package:elm_task/features/auth/data/models/verify_model.dart';
+import 'package:elm_task/features/incidents/data/models/incident_model.dart';
+import 'package:elm_task/features/incidents/domain/entities/incidents_wrapper.dart';
 
-abstract class AuthLocalDataSource {
-  Future<VerifyModel> getVerify(String email, String otp);
-  Future<void> saveVerify(VerifyModel verify);
+abstract class IncidentsLocalDataSource {
+  Future<IncidentsModel> getAll();
+  Future<void> save(IncidentsModel incidentsModel);
 }
 
-class AuthLocalDataSourceImp implements AuthLocalDataSource {
+class IncidentsLocalDataSourceImp implements IncidentsLocalDataSource {
   final LocalDataSource localDataSource;
 
-  AuthLocalDataSourceImp({required this.localDataSource});
+  IncidentsLocalDataSourceImp({required this.localDataSource});
 
   @override
-  Future<VerifyModel> getVerify(String email, String otp) async {
-    final json = await localDataSource.read(kVerify);
-    if (json != null) {
-      return VerifyModel.fromJson(json);
+  Future<IncidentsModel> getAll() async {
+    final data = await localDataSource.read(kIncidents);
+    if (data == null) {
+      throw EmptyCacheException();
     }
-    throw EmptyCacheException();
+    return IncidentsModel.fromJson(data);
   }
 
   @override
-  Future<void> saveVerify(VerifyModel verify) async {
-    return await localDataSource.write(kVerify, verify.toJson());
+  Future<void> save(IncidentsModel incidentsModel) async {
+    await localDataSource.write(kIncidents, incidentsModel.toJson());
   }
 }

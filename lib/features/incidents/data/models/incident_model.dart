@@ -32,19 +32,21 @@ class IncidentModel extends Incident {
   });
 
   factory IncidentModel.fromJson(Map<String, dynamic> json) => IncidentModel(
-        id: json["id"],
-        description: json["description"],
-        status: json["status"],
-        createdAt: DateTime.parse(json["created_at"]),
-        updatedAt: DateTime.parse(json["updated_at"]),
-        latitude: json["latitude"],
-        longitude: json["longitude"],
-        priority: json["priority"],
-        typeId: json["type_id"],
-        issuerId: json["issuer_id"],
-        assigneeId: json["assignee_id"],
-        medias:
-            List<Media>.from(json["medias"].map((x) => MediaModel.fromJson(x))),
+        id: json["id"] ?? "",
+        description: json["description"] ?? "",
+        status: IncidentStatus.values[json["status"] ?? 0],
+        createdAt:
+            DateTime.parse(json["created_at"] ?? DateTime.now().toString()),
+        updatedAt:
+            DateTime.parse(json["updated_at"] ?? DateTime.now().toString()),
+        latitude: json["latitude"] ?? 0.0,
+        longitude: json["longitude"] ?? 0.0,
+        priority: json["priority"] ?? 0,
+        typeId: json["type_id"] ?? 0,
+        issuerId: json["issuer_id"] ?? "",
+        assigneeId: json["assignee_id"] ?? "",
+        medias: List<Media>.from(
+            (json["medias"] ?? []).map((x) => MediaModel.fromJson(x))),
       );
 }
 

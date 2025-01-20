@@ -1,5 +1,4 @@
 // widgets
-export 'core/view/widgets/app_drawer.dart';
 export 'core/view/widgets/text_input.dart';
 export 'core/view/widgets/rounded_corner_button.dart';
 export 'core/view/widgets/bottom_sheet_wrapper.dart';

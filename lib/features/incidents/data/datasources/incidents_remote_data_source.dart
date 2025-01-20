@@ -1,10 +1,12 @@
 import 'package:elm_task/core/error/exceptions.dart';
 import 'package:elm_task/core/network/network.dart';
 import 'package:elm_task/features/incidents/data/models/incident_model.dart';
+import 'package:elm_task/features/incidents/domain/entities/incidents_wrapper.dart';
 
 abstract class IncidentsRemoteDataSource {
   Future<IncidentsModel> getAll();
-  Future<IncidentsModel> filter({DateTime? startDate, String status = ""});
+  Future<IncidentsModel> filter(
+      {DateTime? startDate, IncidentStatus status = IncidentStatus.inProgress});
 }
 
 class IncidentsRemoteDataSourceImp implements IncidentsRemoteDataSource {
@@ -22,7 +24,9 @@ class IncidentsRemoteDataSourceImp implements IncidentsRemoteDataSource {
   }
 
   @override
-  Future<IncidentsModel> filter({DateTime? startDate, String status = ""}) {
+  Future<IncidentsModel> filter(
+      {DateTime? startDate,
+      IncidentStatus status = IncidentStatus.inProgress}) {
     // TODO: implement filter
     throw UnimplementedError();
   }
