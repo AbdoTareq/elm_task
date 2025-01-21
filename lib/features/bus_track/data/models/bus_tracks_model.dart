@@ -3,9 +3,9 @@ import 'package:elm_task/features/bus_track/domain/entities/bus_track.dart';
 class BusTracksModel extends BusTracks {
   BusTracksModel({required super.tracks});
 
-  factory BusTracksModel.fromJson(Map<String, dynamic> json) => BusTracksModel(
+  factory BusTracksModel.fromJson(json) => BusTracksModel(
       tracks: List<TrackModel>.from(
-          ((json['tracks'] ?? []) as List).map((x) => TrackModel.fromJson(x))));
+          ((json ?? []) as List).map((x) => TrackModel.fromJson(x))));
 }
 
 class TrackModel extends Track {
@@ -18,10 +18,11 @@ class TrackModel extends Track {
       required super.trackingId});
 
   factory TrackModel.fromJson(Map<String, dynamic> json) => TrackModel(
-      trackingLongitude: json['TrackingLongitude'],
-      trackingLatitude: json['TrackingLatitude'],
-      trackingTime: json['TrackingTime'],
+      trackingLongitude: json['TrackingLongitude'] ?? 0,
+      trackingLatitude: json['TrackingLatitude'] ?? 0,
+      trackingTime:
+          DateTime.parse(json['TrackingTime'] ?? DateTime.now().toString()),
       trackingId: json['TrackingId'],
-      assignedWorkerId: json['AssigedWorkerId'],
-      busNumber: json['busNumber']);
+      assignedWorkerId: json['AssigedWorkerId'] ?? '',
+      busNumber: json['busNumber'] ?? '');
 }

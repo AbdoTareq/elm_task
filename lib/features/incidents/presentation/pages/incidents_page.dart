@@ -96,6 +96,10 @@ class _IncidentsPageState extends State<IncidentsPage> {
                     final incident = list[index];
                     return Card(
                       child: ListTile(
+                        onTap: () => context.pushNamed(
+                          Routes.busTracks,
+                          extra: incident.assigneeId,
+                        ),
                         title: Text(
                           incident.description,
                           maxLines: 2,

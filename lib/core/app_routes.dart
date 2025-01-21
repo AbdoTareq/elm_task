@@ -5,4 +5,5 @@ abstract class Routes {
   static const verify = '/verify';
   static const incidents = '/incidents';
   static const dashboard = '/dashboard';
+  static const busTracks = '/busTracks';
 }
