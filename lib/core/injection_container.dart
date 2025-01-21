@@ -1,7 +1,7 @@
 import 'package:dio/dio.dart';
 import 'package:elm_task/core/network/network.dart';
 import 'package:elm_task/core/network/network_info.dart';
-import 'package:elm_task/core/secure_local_data_source.dart';
+import 'package:elm_task/core/datasources/secure_local_data_source.dart';
 import 'package:elm_task/export.dart';
 import 'package:elm_task/features/auth/data/datasources/auth_local_data_source.dart';
 import 'package:elm_task/features/auth/data/repositories/repo_imp.dart';
