@@ -32,6 +32,11 @@ class AppRouter {
           builder: (context, state) => const IncidentsPage(),
         ),
         GoRoute(
+          name: Routes.dashboard,
+          path: Routes.dashboard,
+          builder: (context, state) => const DashboardPage(),
+        ),
+        GoRoute(
             name: Routes.busTracks,
             path: Routes.busTracks,
             builder: (context, state) => BusTracksPage(
