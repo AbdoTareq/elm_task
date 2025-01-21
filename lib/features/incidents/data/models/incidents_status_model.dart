@@ -1,17 +1,17 @@
-import 'package:elm_task/features/incidents/domain/entities/incidents_status.dart';
+import 'package:elm_task/features/incidents/domain/entities/incs_status.dart';
 
 class IncidentsStatusModel extends IncsStatus {
   IncidentsStatusModel({
     required super.incidents,
   });
 
-  factory IncidentsStatusModel.fromMap(Map<String, dynamic> json) =>
+  factory IncidentsStatusModel.fromJson(Map<String, dynamic> json) =>
       IncidentsStatusModel(
         incidents: List<IncCountModel>.from(
-            json["incidents"].map((x) => IncCountModel.fromMap(x))),
+            json["incidents"].map((x) => IncCountModel.fromJson(x))),
       );
 
-  Map<String, dynamic> toMap() => {
+  Map<String, dynamic> toJson() => {
         "incidents": List<dynamic>.from(incidents.map((x) => {
               "status": x.status,
               "_count": {
@@ -27,12 +27,12 @@ class IncCountModel extends IncCount {
     required super.count,
   });
 
-  factory IncCountModel.fromMap(Map<String, dynamic> json) => IncCountModel(
+  factory IncCountModel.fromJson(Map<String, dynamic> json) => IncCountModel(
         status: json["status"],
-        count: CountModel.fromMap(json["_count"]),
+        count: CountModel.fromJson(json["_count"]),
       );
 
-  Map<String, dynamic> toMap() => {
+  Map<String, dynamic> toJson() => {
         "status": status,
         "_count": {
           "status": count.status,
@@ -45,11 +45,11 @@ class CountModel extends Count {
     required super.status,
   });
 
-  factory CountModel.fromMap(Map<String, dynamic> json) => CountModel(
+  factory CountModel.fromJson(Map<String, dynamic> json) => CountModel(
         status: json["status"],
       );
 
-  Map<String, dynamic> toMap() => {
+  Map<String, dynamic> toJson() => {
         "status": status,
       };
 }

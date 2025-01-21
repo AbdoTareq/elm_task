@@ -5,4 +5,5 @@ class Endpoints {
   static const String login = '/login';
   static const String verify = '/verify-otp';
   static const String incident = '/incident';
+  static const String dashboard = '/dashboard';
 }
