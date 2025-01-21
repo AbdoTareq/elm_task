@@ -1,5 +1,6 @@
 import 'package:elm_task/features/auth/presentation/pages/login_page.dart';
 import 'package:elm_task/features/auth/presentation/pages/verify_page.dart';
+import 'package:elm_task/features/incidents/presentation/pages/dashboard_page.dart';
 import 'package:elm_task/features/incidents/presentation/pages/incidents_page.dart';
 
 import '../../export.dart';
@@ -28,6 +29,11 @@ class AppRouter {
           name: Routes.incidents,
           path: Routes.incidents,
           builder: (context, state) => const IncidentsPage(),
+        ),
+        GoRoute(
+          name: Routes.dashboard,
+          path: Routes.dashboard,
+          builder: (context, state) => const DashboardPage(),
         ),
       ]);
 }

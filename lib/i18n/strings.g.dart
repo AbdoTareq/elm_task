@@ -4,9 +4,9 @@
 /// To regenerate, run: `dart run slang`
 ///
 /// Locales: 2
-/// Strings: 412 (206 per locale)
+/// Strings: 416 (208 per locale)
 ///
-/// Built on 2025-01-21 at 04:29 UTC
+/// Built on 2025-01-21 at 06:24 UTC
 
 // coverage:ignore-file
 // ignore_for_file: type=lint
@@ -162,6 +162,8 @@ class Translations implements BaseTranslations<AppLocale, Translations> {
 	String get startDate => 'Incidents after Start Date';
 	String get login => 'login';
 	String get remember => 'remember';
+	String get incidentStatus => 'Incident Status';
+	String get dashboard => 'Dashboard';
 	String get password => 'password';
 	String get passwordConf => 'password confirmation';
 	String get confirmCode => 'investigation code';
@@ -393,6 +395,8 @@ class _StringsAr implements Translations {
 	@override String get startDate => 'تاريخ البدء';
 	@override String get confirmCode => 'كود التحقيق';
 	@override String get save => 'حفظ';
+	@override String get dashboard => 'لوحة التحكم';
+	@override String get incidentStatus => 'حالة الحادث';
 	@override String get login => 'تسجيل الدخول';
 	@override String get remember => 'يتذكر';
 	@override String get success => 'نجاح';
@@ -608,6 +612,8 @@ extension on Translations {
 			case 'startDate': return 'Incidents after Start Date';
 			case 'login': return 'login';
 			case 'remember': return 'remember';
+			case 'incidentStatus': return 'Incident Status';
+			case 'dashboard': return 'Dashboard';
 			case 'password': return 'password';
 			case 'passwordConf': return 'password confirmation';
 			case 'confirmCode': return 'investigation code';
@@ -821,6 +827,8 @@ extension on _StringsAr {
 			case 'startDate': return 'تاريخ البدء';
 			case 'confirmCode': return 'كود التحقيق';
 			case 'save': return 'حفظ';
+			case 'dashboard': return 'لوحة التحكم';
+			case 'incidentStatus': return 'حالة الحادث';
 			case 'login': return 'تسجيل الدخول';
 			case 'remember': return 'يتذكر';
 			case 'success': return 'نجاح';

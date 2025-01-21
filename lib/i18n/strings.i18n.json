@@ -13,6 +13,8 @@
     "startDate": "Incidents after Start Date",
     "login": "login",
     "remember": "remember",
+    "incidentStatus": "Incident Status",
+    "dashboard": "Dashboard",
     "password": "password",
     "passwordConf": "password confirmation",
     "confirmCode": "investigation code",

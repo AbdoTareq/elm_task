@@ -29,7 +29,20 @@ class _IncidentsPageState extends State<IncidentsPage> {
     return BlocProvider(
       create: (context) => incidentsBloc,
       child: Scaffold(
-        appBar: CustomAppBar(title: context.t.incidents),
+        appBar: CustomAppBar(
+          title: context.t.incidents,
+          actions: [
+            TextButton(
+              onPressed: () => context.pushNamed(Routes.dashboard),
+              child: Text(
+                context.t.dashboard.toTitleCase(),
+                style: Theme.of(context).textTheme.titleLarge?.copyWith(
+                      color: Theme.of(context).primaryColor,
+                    ),
+              ),
+            ),
+          ],
+        ),
         floatingActionButton: BlocConsumer<IncidentsBloc, IncidentsState>(
           listener: (context, state) {
             if (state is IncidentsSuccess) {
