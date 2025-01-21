@@ -9,6 +9,11 @@ import 'package:elm_task/features/auth/domain/repositories/auth_repo.dart';
 import 'package:elm_task/features/auth/domain/usecases/login_usecase.dart';
 import 'package:elm_task/features/auth/domain/usecases/verify_usecase.dart';
 import 'package:elm_task/features/auth/presentation/bloc/auth_bloc.dart';
+import 'package:elm_task/features/bus_track/data/datasources/bus_tracks_remote_data_source.dart';
+import 'package:elm_task/features/bus_track/data/repositories/repo_imp.dart';
+import 'package:elm_task/features/bus_track/domain/repositories/bus_tracks_repo.dart';
+import 'package:elm_task/features/bus_track/domain/usecases/get_all_incidents_usecase.dart';
+import 'package:elm_task/features/bus_track/presentation/bloc/bus_tracks_bloc.dart';
 import 'package:elm_task/features/incidents/data/datasources/incidents_local_data_source.dart';
 import 'package:elm_task/features/incidents/data/datasources/incidents_remote_data_source.dart';
 import 'package:elm_task/features/incidents/data/repositories/repo_imp.dart';
@@ -39,6 +44,9 @@ Future<void> init() async {
       getIncsStatusUsecase: sl(),
     ),
   );
+  sl.registerFactory(
+    () => BusTracksBloc(getAllBusTracksUsecase: sl()),
+  );
   // Usecases
   sl.registerLazySingleton(() => LoginUsecase(sl()));
   sl.registerLazySingleton(() => VerifyUsecase(sl()));
@@ -46,6 +54,7 @@ Future<void> init() async {
   sl.registerLazySingleton(() => CreateIncidentUsecase(sl()));
   sl.registerLazySingleton(() => ChangeStatusIncidentUsecase(sl()));
   sl.registerLazySingleton(() => GetIncsStatusUsecase(sl()));
+  sl.registerLazySingleton(() => GetBusTracksUsecase(sl()));
 
   // Repository
   sl.registerLazySingleton<AuthRepo>(() => AuthRepoImp(
@@ -60,6 +69,11 @@ Future<void> init() async {
         networkInfo: sl(),
       ));
 
+  sl.registerLazySingleton<BusTracksRepo>(() => BusTracksRepoImp(
+        remoteDataSource: sl(),
+        networkInfo: sl(),
+      ));
+
   // Datasources
   sl.registerLazySingleton<AuthRemoteDataSource>(
       () => AuthRemoteDataSourceImp(network: sl()));
@@ -70,6 +84,9 @@ Future<void> init() async {
       () => IncidentsRemoteDataSourceImp(network: sl()));
   sl.registerLazySingleton<IncidentsLocalDataSource>(
       () => IncidentsLocalDataSourceImp(localDataSource: sl()));
+
+  sl.registerLazySingleton<BusTracksRemoteDataSource>(
+      () => BusTracksRemoteDataSourceImp(network: sl()));
 
   //! Core
   sl.registerLazySingleton<NetworkInfo>(
