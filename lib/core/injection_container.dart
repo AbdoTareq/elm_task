@@ -16,6 +16,7 @@ import 'package:elm_task/features/incidents/domain/repositories/incidents_repo.d
 import 'package:elm_task/features/incidents/domain/usecases/change_status_incident_usecase.dart';
 import 'package:elm_task/features/incidents/domain/usecases/create_incident_usecase.dart';
 import 'package:elm_task/features/incidents/domain/usecases/get_all_incidents_usecase.dart';
+import 'package:elm_task/features/incidents/domain/usecases/incs_status_usecase.dart';
 import 'package:elm_task/features/incidents/presentation/bloc/incidents_bloc.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:get_it/get_it.dart';
@@ -35,6 +36,7 @@ Future<void> init() async {
       getAllIncidentsUsecase: sl(),
       createIncidentUsecase: sl(),
       changeStatusIncidentUsecase: sl(),
+      getIncsStatusUsecase: sl(),
     ),
   );
   // Usecases
@@ -43,6 +45,7 @@ Future<void> init() async {
   sl.registerLazySingleton(() => GetAllIncidentsUsecase(sl()));
   sl.registerLazySingleton(() => CreateIncidentUsecase(sl()));
   sl.registerLazySingleton(() => ChangeStatusIncidentUsecase(sl()));
+  sl.registerLazySingleton(() => GetIncsStatusUsecase(sl()));
 
   // Repository
   sl.registerLazySingleton<AuthRepo>(() => AuthRepoImp(

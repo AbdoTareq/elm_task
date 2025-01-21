@@ -1,4 +1,5 @@
 import 'package:elm_task/features/incidents/domain/entities/incidents_wrapper.dart';
+import 'package:elm_task/features/incidents/domain/entities/incs_status.dart';
 import 'package:equatable/equatable.dart';
 import 'package:meta/meta.dart';
 
@@ -8,6 +9,7 @@ abstract class IncidentsState extends Equatable {
   List<Object> get props => [];
 }
 
+// incidents
 class IncidentsEmpty extends IncidentsState {}
 
 class IncidentsLoading extends IncidentsState {}
@@ -30,6 +32,7 @@ class IncidentsSuccess extends IncidentsState {
   List<Object> get props => [incidentsWrapper];
 }
 
+// create
 class IncidentsCreateEmpty extends IncidentsState {}
 
 class IncidentsCreateLoading extends IncidentsState {}
@@ -52,6 +55,7 @@ class IncidentsCreateSuccess extends IncidentsState {
   List<Object> get props => [incidentsWrapper];
 }
 
+// status change
 class IncidentsStatusChangeEmpty extends IncidentsState {}
 
 class IncidentsStatusChangeLoading extends IncidentsState {
@@ -76,4 +80,27 @@ class IncidentsStatusChangeSuccess extends IncidentsState {
 
   @override
   List<Object> get props => [incident];
+}
+
+// incs Status report
+class IncsStatusEmpty extends IncidentsState {}
+
+class IncsStatusLoading extends IncidentsState {}
+
+class IncsStatusError extends IncidentsState {
+  final String message;
+
+  IncsStatusError({required this.message});
+
+  @override
+  List<Object> get props => [message];
+}
+
+class IncsStatusSuccess extends IncidentsState {
+  final IncsStatus incsStatus;
+
+  IncsStatusSuccess({required this.incsStatus});
+
+  @override
+  List<Object> get props => [incsStatus];
 }

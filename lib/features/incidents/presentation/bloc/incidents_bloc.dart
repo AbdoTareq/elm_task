@@ -4,6 +4,7 @@ import 'package:elm_task/features/incidents/domain/entities/incidents_wrapper.da
 import 'package:elm_task/features/incidents/domain/usecases/change_status_incident_usecase.dart';
 import 'package:elm_task/features/incidents/domain/usecases/create_incident_usecase.dart';
 import 'package:elm_task/features/incidents/domain/usecases/get_all_incidents_usecase.dart';
+import 'package:elm_task/features/incidents/domain/usecases/incs_status_usecase.dart';
 import 'package:elm_task/features/incidents/presentation/bloc/incidents_event.dart';
 import 'package:elm_task/features/incidents/presentation/bloc/incidents_state.dart';
 
@@ -11,17 +12,20 @@ class IncidentsBloc extends Bloc<IncidentsEvent, IncidentsState> {
   final CreateIncidentUsecase createIncidentUsecase;
   final GetAllIncidentsUsecase getAllIncidentsUsecase;
   final ChangeStatusIncidentUsecase changeStatusIncidentUsecase;
+  final GetIncsStatusUsecase getIncsStatusUsecase;
 
   IncidentsBloc({
     required this.createIncidentUsecase,
     required this.getAllIncidentsUsecase,
     required this.changeStatusIncidentUsecase,
+    required this.getIncsStatusUsecase,
   }) : super(IncidentsEmpty()) {
     on<GetAllIncidentsEvent>(_getAllIncidents);
     on<CreateIncidentEvent>(_createIncident);
     on<ChangeStatusIncidentEvent>(_changeStatusIncident);
     on<GetIncidentsByStatusEvent>(_getIncidentsByStatus);
     on<GetIncidentsByDateEvent>(_getIncidentsByDate);
+    on<GetIncsStatusEvent>(_getIncsStatus);
   }
   IncidentsWrapper allIncidents = IncidentsWrapper(incidents: []);
   Future<void> _getAllIncidents(
@@ -78,6 +82,16 @@ class IncidentsBloc extends Bloc<IncidentsEvent, IncidentsState> {
     result.fold(
       (failure) => emit(IncidentsStatusChangeError(message: failure.message)),
       (success) => emit(IncidentsStatusChangeSuccess(incident: success)),
+    );
+  }
+
+  Future<void> _getIncsStatus(
+      GetIncsStatusEvent event, Emitter<IncidentsState> emit) async {
+    emit(IncsStatusLoading());
+    final result = await getIncsStatusUsecase(NoParams());
+    result.fold(
+      (failure) => emit(IncsStatusError(message: failure.message)),
+      (success) => emit(IncsStatusSuccess(incsStatus: success)),
     );
   }
 }

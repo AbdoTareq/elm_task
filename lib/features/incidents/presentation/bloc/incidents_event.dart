@@ -11,6 +11,8 @@ abstract class IncidentsEvent extends Equatable {
 
 class GetAllIncidentsEvent extends IncidentsEvent {}
 
+class GetIncsStatusEvent extends IncidentsEvent {}
+
 class GetIncidentsByStatusEvent extends IncidentsEvent {
   final IncidentStatus status;
 
