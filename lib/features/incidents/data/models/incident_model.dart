@@ -37,15 +37,15 @@ class IncidentModel extends Incident {
         description: json["description"] ?? "",
         status: IncidentStatus.values[json["status"] ?? 0],
         createdAt:
-            DateTime.parse(json["created_at"] ?? DateTime.now().toString()),
+            DateTime.parse(json["createdAt"] ?? DateTime.now().toString()),
         updatedAt:
-            DateTime.parse(json["updated_at"] ?? DateTime.now().toString()),
+            DateTime.parse(json["updatedAt"] ?? DateTime.now().toString()),
         latitude: json["latitude"] ?? 0.0,
         longitude: json["longitude"] ?? 0.0,
         priority: json["priority"] ?? 0,
-        typeId: json["type_id"] ?? 0,
-        issuerId: json["issuer_id"] ?? "",
-        assigneeId: json["assignee_id"] ?? "",
+        typeId: json["typeId"] ?? 0,
+        issuerId: json["issuerId"] ?? "",
+        assigneeId: json["assigneeId"] ?? "",
         medias: List<Media>.from(
             (json["medias"] ?? []).map((x) => MediaModel.fromJson(x))),
       );

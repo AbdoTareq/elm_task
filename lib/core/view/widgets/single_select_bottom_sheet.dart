@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 class SingleSelectBottomSheet extends StatelessWidget {
   const SingleSelectBottomSheet({
@@ -28,6 +29,7 @@ class SingleSelectBottomSheet extends StatelessWidget {
                 itemBuilder: (context, index) {
                   return ListTile(
                     onTap: () {
+                      context.pop();
                       onTap!(index);
                       return;
                     },

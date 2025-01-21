@@ -11,6 +11,18 @@ abstract class IncidentsEvent extends Equatable {
 
 class GetAllIncidentsEvent extends IncidentsEvent {}
 
+class GetIncidentsByStatusEvent extends IncidentsEvent {
+  final IncidentStatus status;
+
+  GetIncidentsByStatusEvent(this.status);
+}
+
+class GetIncidentsByDateEvent extends IncidentsEvent {
+  final DateTime date;
+
+  GetIncidentsByDateEvent(this.date);
+}
+
 class CreateIncidentEvent extends IncidentsEvent {
   final IncidentModel item;
 

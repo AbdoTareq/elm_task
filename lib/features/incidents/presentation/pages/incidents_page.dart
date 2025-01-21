@@ -5,6 +5,7 @@ import 'package:elm_task/features/incidents/domain/entities/incidents_wrapper.da
 import 'package:elm_task/features/incidents/presentation/bloc/incidents_bloc.dart';
 import 'package:elm_task/features/incidents/presentation/bloc/incidents_event.dart';
 import 'package:elm_task/features/incidents/presentation/bloc/incidents_state.dart';
+import 'package:elm_task/features/incidents/presentation/widgets/filters_widget.dart';
 
 class IncidentsPage extends StatefulWidget {
   const IncidentsPage({super.key});
@@ -33,17 +34,13 @@ class _IncidentsPageState extends State<IncidentsPage> {
           listener: (context, state) {
             if (state is IncidentsSuccess) {
               list = state.incidentsWrapper.incidents;
-            }
-            if (state is IncidentsCreateError) {
+            } else if (state is IncidentsCreateError) {
               showFailSnack(message: state.message);
-            }
-            if (state is IncidentsCreateSuccess) {
+            } else if (state is IncidentsCreateSuccess) {
               showSuccessSnack(message: context.t.success);
-            }
-            if (state is IncidentsStatusChangeError) {
+            } else if (state is IncidentsStatusChangeError) {
               showFailSnack(message: state.message);
-            }
-            if (state is IncidentsStatusChangeSuccess) {
+            } else if (state is IncidentsStatusChangeSuccess) {
               Logger().i(state.incident.status);
               showSuccessSnack(message: context.t.success);
             }
@@ -70,61 +67,55 @@ class _IncidentsPageState extends State<IncidentsPage> {
         body: Padding(
           padding: const EdgeInsets.only(left: 16.0, right: 16.0),
           child: SafeArea(
-            child: Column(
-              spacing: 16,
-              children: [
-                Expanded(
-                  child: BlocBuilder<IncidentsBloc, IncidentsState>(
-                    builder: (context, state) {
-                      if (state is IncidentsLoading) {
-                        return Center(child: const CircularProgressIndicator());
-                      }
-                      if (state is IncidentsError) {
-                        return Text(state.message);
-                      }
-                      return CustomListViewBuilder(
-                        itemCount: list.length,
-                        footer: 80.h.heightBox,
-                        itemBuilder: (context, index) {
-                          final incident = list[index];
-                          return Card(
-                            child: ListTile(
-                              title: Text(
-                                incident.description,
-                                maxLines: 2,
+            child: BlocBuilder<IncidentsBloc, IncidentsState>(
+              builder: (context, state) {
+                if (state is IncidentsLoading) {
+                  return Center(child: const CircularProgressIndicator());
+                }
+                if (state is IncidentsError) {
+                  return Text(state.message);
+                }
+                return CustomListViewBuilder(
+                  header: FiltersWidget(),
+                  itemCount: list.length,
+                  footer: 80.h.heightBox,
+                  itemBuilder: (context, index) {
+                    final incident = list[index];
+                    return Card(
+                      child: ListTile(
+                        title: Text(
+                          incident.description,
+                          maxLines: 2,
+                        ),
+                        subtitle: Padding(
+                          padding: const EdgeInsets.only(top: 8.0),
+                          child: Text(incident.id.toTitleCase(),
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .labelLarge
+                                  ?.copyWith(
+                                    color: Theme.of(context).primaryColor,
+                                  )),
+                        ),
+                        trailing: state is IncidentsStatusChangeLoading &&
+                                state.id == incident.id
+                            ? CircularProgressIndicator()
+                            : IconButton(
+                                icon: Icon(
+                                  Icons.edit,
+                                  color: Theme.of(context).primaryColor,
+                                ),
+                                onPressed: () =>
+                                    incidentsBloc.add(ChangeStatusIncidentEvent(
+                                  incident.id,
+                                  IncidentStatus.completed,
+                                )),
                               ),
-                              subtitle: Padding(
-                                padding: const EdgeInsets.only(top: 8.0),
-                                child: Text(incident.id.toTitleCase(),
-                                    style: Theme.of(context)
-                                        .textTheme
-                                        .labelLarge
-                                        ?.copyWith(
-                                          color: Theme.of(context).primaryColor,
-                                        )),
-                              ),
-                              trailing: state is IncidentsStatusChangeLoading &&
-                                      state.id == incident.id
-                                  ? CircularProgressIndicator()
-                                  : IconButton(
-                                      icon: Icon(
-                                        Icons.edit,
-                                        color: Theme.of(context).primaryColor,
-                                      ),
-                                      onPressed: () => incidentsBloc
-                                          .add(ChangeStatusIncidentEvent(
-                                        incident.id,
-                                        IncidentStatus.completed,
-                                      )),
-                                    ),
-                            ),
-                          );
-                        },
-                      );
-                    },
-                  ),
-                ),
-              ],
+                      ),
+                    );
+                  },
+                );
+              },
             ),
           ),
         ),

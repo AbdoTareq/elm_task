@@ -10,6 +10,7 @@
     "incidents": "Incidents",
     "changeStatus": "Change Status",
     "verify": "Verify",
+    "startDate": "Incidents after Start Date",
     "login": "login",
     "remember": "remember",
     "password": "password",
