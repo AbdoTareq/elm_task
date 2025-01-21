@@ -17,9 +17,6 @@ class _BusTracksPageState extends State<BusTracksPage> {
   final Set<Marker> markers = {};
   List<Track> list = [];
   late GoogleMapController mapController;
-  void _onMapCreated(GoogleMapController controller) {
-    mapController = controller;
-  }
 
   @override
   void initState() {
@@ -32,49 +29,44 @@ class _BusTracksPageState extends State<BusTracksPage> {
     return BlocProvider(
       create: (context) => busTracksBloc,
       child: Scaffold(
-        body: Padding(
-          padding: const EdgeInsets.only(left: 16.0, right: 16.0),
-          child: SafeArea(
-            child: BlocBuilder<BusTracksBloc, BusTracksState>(
-              builder: (context, state) {
-                if (state is BusTracksLoading) {
-                  return Center(child: const CircularProgressIndicator());
-                }
-                if (state is BusTracksError) {
-                  return Text(state.message);
-                }
-                if (state is BusTracksSuccess) {
-                  list = state.busTracks.tracks;
-                  for (var element in list) {
-                    markers.add(Marker(
-                      markerId: MarkerId(element.trackingId),
-                      position: LatLng(
-                          element.trackingLatitude, element.trackingLongitude),
-                      icon: BitmapDescriptor.defaultMarker,
-                    ));
-                  }
-                  mapController.moveCamera(CameraUpdate.newCameraPosition(
-                    CameraPosition(
-                      target: LatLng(markers.first.position.latitude,
-                          markers.first.position.longitude),
-                      zoom: 15,
-                    ),
-                  ));
-                  Future.delayed(Duration(milliseconds: 1800)).then((_) {
-                    setState(() {});
-                  });
-                }
-                return GoogleMap(
-                  mapType: MapType.normal,
-                  initialCameraPosition:
-                      const CameraPosition(target: LatLng(0, 0)),
-                  onMapCreated: _onMapCreated,
-                  minMaxZoomPreference: const MinMaxZoomPreference(0, 18),
-                  markers: markers,
-                );
+        body: BlocBuilder<BusTracksBloc, BusTracksState>(
+          builder: (context, state) {
+            if (state is BusTracksLoading) {
+              return Center(child: const CircularProgressIndicator());
+            }
+            if (state is BusTracksError) {
+              return Text(state.message);
+            }
+            if (state is BusTracksSuccess) {
+              list = state.busTracks.tracks;
+              for (var element in list) {
+                markers.add(Marker(
+                  markerId: MarkerId(element.trackingId),
+                  position: LatLng(
+                      element.trackingLatitude, element.trackingLongitude),
+                  icon: BitmapDescriptor.defaultMarker,
+                ));
+              }
+            }
+            return GoogleMap(
+              mapType: MapType.normal,
+              initialCameraPosition: const CameraPosition(target: LatLng(0, 0)),
+              onMapCreated: (mapController) {
+                mapController.moveCamera(CameraUpdate.newCameraPosition(
+                  CameraPosition(
+                    target: LatLng(markers.first.position.latitude,
+                        markers.first.position.longitude),
+                    zoom: 15,
+                  ),
+                ));
+                Future.delayed(Duration(milliseconds: 1800)).then((_) {
+                  setState(() {});
+                });
               },
-            ),
-          ),
+              minMaxZoomPreference: const MinMaxZoomPreference(0, 18),
+              markers: markers,
+            );
+          },
         ),
       ),
     );
