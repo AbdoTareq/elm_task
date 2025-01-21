@@ -41,7 +41,7 @@ class FiltersWidget extends StatelessWidget {
           onPressed: () {
             showModalBottomSheet(
                 context: context,
-                builder: (context) {
+                builder: (_) {
                   return SingleSelectBottomSheet(
                     title: context.t.changeStatus,
                     choices: IncidentStatus.values
