@@ -43,7 +43,7 @@ class IncidentsBloc extends Bloc<IncidentsEvent, IncidentsState> {
 
   Future<void> _changeStatusIncident(
       ChangeStatusIncidentEvent event, Emitter<IncidentsState> emit) async {
-    emit(IncidentsStatusChangeLoading());
+    emit(IncidentsStatusChangeLoading(id: event.id));
     final result = await changeStatusIncidentUsecase(
       ChangeStatusIncidentParams(id: event.id, status: event.status),
     );

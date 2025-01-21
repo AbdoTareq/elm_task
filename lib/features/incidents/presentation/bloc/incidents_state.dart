@@ -54,7 +54,11 @@ class IncidentsCreateSuccess extends IncidentsState {
 
 class IncidentsStatusChangeEmpty extends IncidentsState {}
 
-class IncidentsStatusChangeLoading extends IncidentsState {}
+class IncidentsStatusChangeLoading extends IncidentsState {
+  final String id;
+
+  IncidentsStatusChangeLoading({required this.id});
+}
 
 class IncidentsStatusChangeError extends IncidentsState {
   final String message;

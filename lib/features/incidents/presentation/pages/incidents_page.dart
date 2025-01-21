@@ -31,10 +31,20 @@ class _IncidentsPageState extends State<IncidentsPage> {
         appBar: CustomAppBar(title: context.t.incidents),
         floatingActionButton: BlocConsumer<IncidentsBloc, IncidentsState>(
           listener: (context, state) {
+            if (state is IncidentsSuccess) {
+              list = state.incidentsWrapper.incidents;
+            }
             if (state is IncidentsCreateError) {
               showFailSnack(message: state.message);
             }
             if (state is IncidentsCreateSuccess) {
+              showSuccessSnack(message: context.t.success);
+            }
+            if (state is IncidentsStatusChangeError) {
+              showFailSnack(message: state.message);
+            }
+            if (state is IncidentsStatusChangeSuccess) {
+              Logger().i(state.incident.status);
               showSuccessSnack(message: context.t.success);
             }
           },
@@ -63,33 +73,56 @@ class _IncidentsPageState extends State<IncidentsPage> {
             child: Column(
               spacing: 16,
               children: [
-                BlocBuilder<IncidentsBloc, IncidentsState>(
-                  builder: (context, state) {
-                    if (state is IncidentsLoading) {
-                      return Center(child: const CircularProgressIndicator());
-                    }
-                    if (state is IncidentsError) {
-                      return Text(state.message);
-                    }
-                    if (state is IncidentsSuccess) {
-                      list = state.incidentsWrapper.incidents;
-                    }
-                    return Expanded(
-                      child: CustomListViewBuilder(
+                Expanded(
+                  child: BlocBuilder<IncidentsBloc, IncidentsState>(
+                    builder: (context, state) {
+                      if (state is IncidentsLoading) {
+                        return Center(child: const CircularProgressIndicator());
+                      }
+                      if (state is IncidentsError) {
+                        return Text(state.message);
+                      }
+                      return CustomListViewBuilder(
                         itemCount: list.length,
                         footer: 80.h.heightBox,
                         itemBuilder: (context, index) {
                           final incident = list[index];
                           return Card(
                             child: ListTile(
-                              title: Text(incident.id),
-                              subtitle: Text(incident.description),
+                              title: Text(
+                                incident.description,
+                                maxLines: 2,
+                              ),
+                              subtitle: Padding(
+                                padding: const EdgeInsets.only(top: 8.0),
+                                child: Text(incident.id.toTitleCase(),
+                                    style: Theme.of(context)
+                                        .textTheme
+                                        .labelLarge
+                                        ?.copyWith(
+                                          color: Theme.of(context).primaryColor,
+                                        )),
+                              ),
+                              trailing: state is IncidentsStatusChangeLoading &&
+                                      state.id == incident.id
+                                  ? CircularProgressIndicator()
+                                  : IconButton(
+                                      icon: Icon(
+                                        Icons.edit,
+                                        color: Theme.of(context).primaryColor,
+                                      ),
+                                      onPressed: () => incidentsBloc
+                                          .add(ChangeStatusIncidentEvent(
+                                        incident.id,
+                                        IncidentStatus.completed,
+                                      )),
+                                    ),
                             ),
                           );
                         },
-                      ),
-                    );
-                  },
+                      );
+                    },
+                  ),
                 ),
               ],
             ),
