@@ -1,16 +1,18 @@
 # elm_task
 
-A new Flutter project.
-
-## Getting Started
-
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+· Login with an email.
+![alt text](<Simulator Screenshot - iPhone 16 Plus - 2025-01-21 at 09.46.45.png>)
+. Receive OTP and verify the user.
+![alt text](<Simulator Screenshot - iPhone 16 Plus - 2025-01-21 at 09.47.20.png>)
+· Display the list of incidents.
+![alt text](<Simulator Screenshot - iPhone 16 Plus - 2025-01-21 at 09.37.02.png>)
+· Filter the list of incidents locally (Filter by Date/Status).
+![alt text](<Simulator Screenshot - iPhone 16 Plus - 2025-01-21 at 09.37.07.png>)
+![alt text](<Simulator Screenshot - iPhone 16 Plus - 2025-01-21 at 09.43.12.png>)
+![alt text](<Simulator Screenshot - iPhone 16 Plus - 2025-01-21 at 09.44.55.png>)
+. Display a dashboard with some visual charts elements.
+![alt text](<Simulator Screenshot - iPhone 16 Plus - 2025-01-21 at 09.41.11.png>)
+· Post a new incident.
+![alt text](image.png)
+. Change an incident's
+![alt text](<Simulator Screenshot - iPhone 16 Plus - 2025-01-21 at 09.37.07.png>)
