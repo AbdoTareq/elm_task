@@ -6,4 +6,5 @@ class Endpoints {
   static const String verify = '/verify-otp';
   static const String incident = '/incident';
   static const String dashboard = '/dashboard';
+  static const String busTrack = '/buses/track-bus';
 }
